@@ -86,13 +86,13 @@ function quiz(start, end) {
 
 function showHighScores() {
     for (let i = 0; i < highscores.length; i++) {
-        if (score > highscores[i].score || score == 4) {
-            console.log(chalk.bgCyan("\nCongratulations! You are a high scorer!\n") + chalk.italic("(DM me the screenshot of your score, I'll add you to the high scorers' list.)"));
+        if (!(score < highscores[i].score)) {
+            console.log(chalk.bgBlue("\nCongratulations! You are a high scorer!\n") + chalk.italic("(DM me the screenshot of your score, I'll add you to the high scorers' list.)"));
             break;
         }
     }
 
-    console.log(chalk.blue("\nCheck out the high scores"));
+    console.log(chalk.bold.bgMagenta("\nCheck out the high scores:"));
 
     for (let i = 0; i < highscores.length; i++) {
         console.log(highscores[i].name + ": " + chalk.bold.blue(highscores[i].score));
@@ -114,18 +114,20 @@ function mainDriver() {
         console.log(chalk.bold.bgRed("\nLevel 1"));
         quiz(0, 2);
         if (score >= 2) {
+            console.log(chalk.bold.green("\nCongratulations on clearing the first level! :P"));
             console.log(chalk.bold.bgRed("\nLevel 2"));
             quiz(3, 5);
             if (score >= 4) {
+                console.log(chalk.bold.green("\nSeems like you know me pretty well...let's see what you got"));
                 console.log(chalk.bold.bgRed("\nLevel 3"));
                 quiz(6, 8);
             }
             else {
-                console.log(chalk.red("Oops, you're out!"))
+                console.log(chalk.red("Oops, you're out. Thanks for playing!"))
             }
         }
         else {
-            console.log(chalk.red("Oops, you're out!"))
+            console.log(chalk.red("Oops, you're out. Thanks for playing!"))
         }
 
         console.log("\nYaay! You scored: " + chalk.green(score));
